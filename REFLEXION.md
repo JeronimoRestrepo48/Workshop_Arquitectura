@@ -1,0 +1,3 @@
+# Reflexión – OrdenBuilder
+
+El **OrdenBuilder** reduce el riesgo de errores frente a crear la orden directamente en la vista porque: (1) **centraliza la validación**: en `build()` se exige usuario y productos, evitando órdenes incompletas; (2) **encapsula el cálculo de negocio** (subtotal, IVA) en un solo lugar, de modo que no se repite lógica ni se olvida el IVA en alguna pantalla; (3) **ofrece una interfaz fluida** (`con_usuario(...).con_productos(...).para_envio(...)`), lo que hace el código más legible y menos propenso a pasar argumentos en el orden equivocado; (4) **desacopla la vista del modelo**: la vista no conoce los campos de `Orden` ni las reglas de totales, por lo que cambios en el dominio no obligan a tocar la capa de presentación.
