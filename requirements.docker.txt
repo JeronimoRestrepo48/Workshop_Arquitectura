@@ -1,0 +1,9 @@
+#
+# Dependencias mínimas para construir la imagen Docker del Taller 3.
+# (El `requirements.txt` del repo contiene paquetes del sistema que no aplican en `python:slim`.)
+#
+Django==5.2.11
+djangorestframework==3.16.1
+PyMySQL==1.1.2
+cryptography==43.0.3
+
