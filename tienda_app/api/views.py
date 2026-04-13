@@ -10,7 +10,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
-from .serializers import OrdenInputSerializer
+from .serializers import OrdenInputSerializer, LibroSerializer
+from tienda_app.models import Libro
 from tienda_app.services import CompraService
 from tienda_app.infra.factories import PaymentFactory
 
@@ -29,6 +30,16 @@ def _get_request_data(request):
         except (ValueError, UnicodeDecodeError):
             pass
     return {}
+
+
+class ProductosAPIView(APIView):
+    """GET /api/v1/productos/ — catálogo servido por Django (prueba de coexistencia v1)."""
+
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        libros = Libro.objects.all().order_by("id")
+        return Response(LibroSerializer(libros, many=True).data)
 
 
 @method_decorator(csrf_exempt, name="dispatch")
